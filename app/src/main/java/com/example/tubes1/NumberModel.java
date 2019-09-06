@@ -4,7 +4,7 @@ public class NumberModel {
     private int digit;
     private String operator;
 
-    public NumberModel(){
+    public NumberModel(int digit,String operator){
 
     }
 }
