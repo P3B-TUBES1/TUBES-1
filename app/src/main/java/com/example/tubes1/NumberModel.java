@@ -5,6 +5,6 @@ public class NumberModel {
     private String operator;
 
     public NumberModel(int digit,String operator){
-
+        this.digit = digit;
     }
 }
