@@ -3,6 +3,7 @@ package com.example.tubes1;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity implements IMainActivity{
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
     }
     @Override
     public void changePage(int page){
-
+        Log.d("test","test");
     }
     @Override
     public void showResults(){
