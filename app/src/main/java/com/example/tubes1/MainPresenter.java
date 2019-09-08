@@ -13,6 +13,9 @@ public class MainPresenter {
     public void addOperand(){
 
     }
+    public void load(){
+
+    }
     public void getResult(){
 
     }
