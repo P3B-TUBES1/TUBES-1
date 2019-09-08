@@ -17,14 +17,13 @@
 
     </LinearLayout>
     <RelativeLayout
-        android:layout_width="200dp"
-        android:layout_height="match_parent">
+        android:layout_width="150dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start">
         <fragment
             android:id="@+id/nav_drawer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:name="com.example.tubes1.NavFragment">
-
-        </fragment>
+            android:name="com.example.tubes1.NavFragment"/>
     </RelativeLayout>
 </androidx.drawerlayout.widget.DrawerLayout>
