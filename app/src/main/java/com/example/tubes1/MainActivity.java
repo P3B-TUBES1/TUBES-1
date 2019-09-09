@@ -27,8 +27,8 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
         this.presenter = new MainPresenter(this);
         this.navList = this.findViewById(R.id.nav_list_view);
         this.navListViewAdapter = new NavListViewAdapter(this);
-        this.navList.setAdapter(this.navListViewAdapter);
         this.lstNumber = this.findViewById(R.id.lst_number);
+        this.navList.setAdapter(this.navListViewAdapter);
         this.numberListAdapter= new NumberListAdapter(this,this.presenter);
         this.toolbar = this.findViewById(R.id.action_bar);
         toolbar.setTitle("Calculator");
