@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
     private ListView navList;
     private NavListViewAdapter navListViewAdapter;
     private ListView lstNumber;
-    private NumberListAdapter numberListAdapter;
+    private NumberListAdapter numberListAdapter;//test
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
