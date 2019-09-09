@@ -1,4 +1,4 @@
-package com.example.tubes1;
+package com.example.tubes1.Adapter;
 
 import android.app.Activity;
 import android.util.Log;
@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-
+import com.example.tubes1.*;
 
 import androidx.appcompat.app.AppCompatActivity;
 
