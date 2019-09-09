@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
     private ListView navList;
     private NavListViewAdapter navListViewAdapter;
     private ListView lstNumber;
-    private NumberListAdapter numberListAdapter;
+    private NumberListAdapter numberListAdapter;//test
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,13 +27,12 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
         this.presenter = new MainPresenter(this);
         this.navList = this.findViewById(R.id.nav_list_view);
         this.navListViewAdapter = new NavListViewAdapter(this);
-        this.lstNumber = this.findViewById(R.id.lst_number);
         this.navList.setAdapter(this.navListViewAdapter);
+        this.lstNumber = this.findViewById(R.id.lst_number);
         this.numberListAdapter= new NumberListAdapter(this,this.presenter);
         this.toolbar = this.findViewById(R.id.action_bar);
         toolbar.setTitle("Calculator");
-
-        //tes
+        this.setSupportActionBar(toolbar);
     }
     @Override
     public void updateList(List<NumberModel> list){
