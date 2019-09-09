@@ -34,8 +34,6 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
         toolbar.setTitle("Calculator");
         this.setSupportActionBar(toolbar);
 
-        //tes
-        //blabla
     }
     @Override
     public void updateList(List<NumberModel> list){
