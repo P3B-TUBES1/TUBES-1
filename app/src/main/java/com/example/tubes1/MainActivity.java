@@ -32,7 +32,9 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
         this.numberListAdapter= new NumberListAdapter(this,this.presenter);
         this.toolbar = this.findViewById(R.id.action_bar);
         toolbar.setTitle("Calculator");
-        this.setSupportActionBar(toolbar);
+
+        //zz
+        //test;
     }
     @Override
     public void updateList(List<NumberModel> list){
