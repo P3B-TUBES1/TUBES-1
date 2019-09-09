@@ -1,17 +1,25 @@
 package com.example.tubes1;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ListView;
+
 import com.example.tubes1.Adapter.NavListViewAdapter;
+import com.example.tubes1.Adapter.NumberListAdapter;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements IMainActivity{
+    private Toolbar toolbar;
     private MainPresenter presenter;
     private ListView navList;
     private NavListViewAdapter navListViewAdapter;
     private ListView lstNumber;
+    private NumberListAdapter numberListAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,9 +29,13 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
         this.navListViewAdapter = new NavListViewAdapter(this);
         this.navList.setAdapter(this.navListViewAdapter);
         this.lstNumber = this.findViewById(R.id.lst_number);
+        this.numberListAdapter= new NumberListAdapter(this,this.presenter);
+        this.toolbar = this.findViewById(R.id.action_bar);
+        toolbar.setTitle("Calculator");
+        this.setSupportActionBar(toolbar);
     }
     @Override
-    public void updateList(){
+    public void updateList(List<NumberModel> list){
 
     }
     @Override

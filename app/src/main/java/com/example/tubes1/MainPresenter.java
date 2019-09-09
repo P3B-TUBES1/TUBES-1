@@ -16,6 +16,10 @@ public class MainPresenter {
     public void load(){
 
     }
+    public void deleteList(int i){
+        this.numbers.remove(i);
+        this.mView.updateList(numbers);
+    }
     public void getResult(){
 
     }

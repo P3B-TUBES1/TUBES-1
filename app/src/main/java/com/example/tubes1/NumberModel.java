@@ -8,4 +8,10 @@ public class NumberModel {
         this.digit = digit;
         this.operator = operator;
     }
+    public int getOperand(){
+        return this.digit;
+    }
+    public String getOperator(){
+        return this.operator;
+    }
 }
