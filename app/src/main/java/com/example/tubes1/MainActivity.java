@@ -19,19 +19,17 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
     private MainPresenter presenter;
     private ListView navList;
     private NavListViewAdapter navListViewAdapter;
-    private ListView lstNumber;
-    private NumberListAdapter numberListAdapter;
     private FragmentManager fragmentManager;
     private HomeFragment homeFragment;
     private AddFragment addFragment;
-
+    private ListView lstNumber;
+    private NumberListAdapter numberListAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.presenter = new MainPresenter(this);
         this.navList = this.findViewById(R.id.nav_list_view);
-        this.lstNumber = this.findViewById(R.id.lst_number);
         this.navListViewAdapter = new NavListViewAdapter(this);
         this.navList.setAdapter(this.navListViewAdapter);
         this.homeFragment = HomeFragment.newInstance();
@@ -40,14 +38,10 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
         this.toolbar = this.findViewById(R.id.action_bar);
         FragmentTransaction ft = this.fragmentManager.beginTransaction();
         ft.add(R.id.fragment_container,this.homeFragment).commit();
-
         toolbar.setTitle("Calculator");
         this.setSupportActionBar(toolbar);
         this.numberListAdapter = new NumberListAdapter(this, this.presenter);
-        Log.d("testttt",this.lstNumber+"");
-//        this.lstNumber.setAdapter(this.numberListAdapter);
-//        this.presenter.load();
-
+        this.presenter.load();
     }
     @Override
     public void updateList(List<NumberModel> list) {
@@ -81,6 +75,11 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
         }
         ft.commit();
 
+    }
+    @Override
+    public void fetchLstNumber(ListView lstNumber){
+        this.lstNumber = lstNumber;
+        this.lstNumber.setAdapter(this.numberListAdapter);
     }
     @Override
     public void showResults(){
