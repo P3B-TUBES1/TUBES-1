@@ -22,7 +22,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance){
-        View view = inflater.inflate(R.layout.fragment_home,container,true);
+        View view = inflater.inflate(R.layout.fragment_home,container,false);
         this.btnAdd = view.findViewById(R.id.btn_add);
         this.btnRes = view.findViewById(R.id.btn_result);
         this.btnClear = view.findViewById(R.id.btn_clear);
