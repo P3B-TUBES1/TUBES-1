@@ -34,18 +34,19 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
         this.navList = this.findViewById(R.id.nav_list_view);
         this.navListViewAdapter = new NavListViewAdapter(this);
         this.navList.setAdapter(this.navListViewAdapter);
-        this.lstNumber = this.findViewById(R.id.lst_number);
-        this.toolbar = this.findViewById(R.id.action_bar);
-        toolbar.setTitle("Calculator");
-        this.setSupportActionBar(toolbar);
-        this.numberListAdapter = new NumberListAdapter(this, this.presenter);
-        this.lstNumber.setAdapter(this.numberListAdapter);
-        this.presenter.load();
         this.homeFragment = HomeFragment.newInstance();
         this.addFragment = AddFragment.newInstance();
         this.fragmentManager = getSupportFragmentManager();
         FragmentTransaction ft = this.fragmentManager.beginTransaction();
         ft.add(R.id.fragment_container,this.homeFragment).commit();
+        this.lstNumber = this.findViewById(R.id.lst_number);
+        this.toolbar = this.findViewById(R.id.action_bar);
+        toolbar.setTitle("Calculator");
+        this.setSupportActionBar(toolbar);
+        this.numberListAdapter = new NumberListAdapter(this, this.presenter);
+//        this.lstNumber.setAdapter(this.numberListAdapter);
+//        this.presenter.load();
+
     }
     @Override
     public void updateList(List<NumberModel> list) {

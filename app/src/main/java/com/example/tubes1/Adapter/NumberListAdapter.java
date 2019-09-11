@@ -23,6 +23,7 @@ public class NumberListAdapter extends BaseAdapter {
         this.activity = activity;
         this.lst_number = new LinkedList<NumberModel>();
         this.presenter = presenter;
+        this.lst_number.add(new NumberModel(5,"+"));
     }
     @Override
     public int getCount(){
@@ -66,6 +67,7 @@ public class NumberListAdapter extends BaseAdapter {
             this.deleteImage = view.findViewById(R.id.trash_image);
             this.operandView = view.findViewById(R.id.list_view_operand);
             this.deleteImage.setOnClickListener(this);
+            this.presenter = presenter;
         }
         @Override
         public void onClick(View v){
