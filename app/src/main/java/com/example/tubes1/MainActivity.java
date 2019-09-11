@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
         this.numberListAdapter = new NumberListAdapter(this, this.presenter);
 //        this.lstNumber.setAdapter(this.numberListAdapter);
 //        this.presenter.load();
+        Log.d("Test",this.numberListAdapter.getCount()+"");
 
     }
     @Override
