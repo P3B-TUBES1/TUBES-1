@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
     private ListView navList;
     private NavListViewAdapter navListViewAdapter;
     private ListView lstNumber;
-    private NumberListAdapter numberListAdapter;//test
+    private NumberListAdapter numberListAdapter;
     private FragmentManager fragmentManager;
     private HomeFragment homeFragment;
     private AddFragment addFragment;
@@ -35,10 +35,12 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
         this.navListViewAdapter = new NavListViewAdapter(this);
         this.navList.setAdapter(this.navListViewAdapter);
         this.lstNumber = this.findViewById(R.id.lst_number);
-        this.numberListAdapter = new NumberListAdapter(this, this.presenter);
         this.toolbar = this.findViewById(R.id.action_bar);
         toolbar.setTitle("Calculator");
         this.setSupportActionBar(toolbar);
+        this.numberListAdapter = new NumberListAdapter(this, this.presenter);
+        this.lstNumber.setAdapter(this.numberListAdapter);
+        this.presenter.load();
         this.homeFragment = HomeFragment.newInstance();
         this.addFragment = AddFragment.newInstance();
         this.fragmentManager = getSupportFragmentManager();

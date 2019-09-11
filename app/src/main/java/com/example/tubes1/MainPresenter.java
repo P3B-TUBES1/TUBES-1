@@ -15,6 +15,9 @@ public class MainPresenter {
     }
     public void load(){
 
+        this.numbers.add(new NumberModel(5,"+"));
+        this.numbers.add(new NumberModel(3,"-"));
+        this.mView.updateList(this.numbers);
     }
     public void deleteList(int i){
         this.numbers.remove(i);

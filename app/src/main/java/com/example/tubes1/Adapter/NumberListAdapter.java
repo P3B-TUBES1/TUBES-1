@@ -11,15 +11,17 @@ import android.widget.TextView;
 import com.example.tubes1.*;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class NumberListAdapter extends BaseAdapter {
     private Activity activity;
     private List<NumberModel> lst_number;
     private MainPresenter presenter;
+
     public NumberListAdapter(Activity activity,MainPresenter presenter){
         this.activity = activity;
-        this.lst_number = new ArrayList<NumberModel>();
+        this.lst_number = new LinkedList<NumberModel>();
         this.presenter = presenter;
     }
     @Override
