@@ -29,17 +29,21 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.presenter = new MainPresenter(this);
+        // navigation list
         this.navList = this.findViewById(R.id.nav_list_view);
         this.navListViewAdapter = new NavListViewAdapter(this);
         this.navList.setAdapter(this.navListViewAdapter);
+        //fragment
         this.homeFragment = HomeFragment.newInstance();
         this.addFragment = AddFragment.newInstance();
         this.fragmentManager = getSupportFragmentManager();
-        this.toolbar = this.findViewById(R.id.action_bar);
         FragmentTransaction ft = this.fragmentManager.beginTransaction();
         ft.add(R.id.fragment_container,this.homeFragment).commit();
+        //toolbar
+        this.toolbar = this.findViewById(R.id.action_bar);
         toolbar.setTitle("Calculator");
         this.setSupportActionBar(toolbar);
+        //number adapter
         this.numberListAdapter = new NumberListAdapter(this, this.presenter);
         this.presenter.load();
     }
