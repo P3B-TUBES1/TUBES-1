@@ -9,4 +9,5 @@ public interface IMainActivity {
     void changePage(int page); // fragment ke MainActivity
     void showResults(); // dari presenter -> dialogFragment
     void fetchLstNumber(ListView lstNumber);
+    void addOperand(String operator, int number);
 }
