@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
         ft.add(R.id.fragment_container, this.homeFragment).commit();
         //toolbar
         this.toolbar = this.findViewById(R.id.action_bar);
-        toolbar.setTitle("Calculator");
+        this.toolbar.setTitle("Calculator");
         this.setSupportActionBar(toolbar);
         //number adapter
         this.numberListAdapter = new NumberListAdapter(this, this.presenter);
@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
 
         FragmentTransaction ft = this.fragmentManager.beginTransaction();
         if (page == 1) {
+            this.toolbar.setTitle("Calculator");
             if (this.homeFragment.isAdded()) {
                 ft.show(this.homeFragment);
             } else {
@@ -79,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
                 ft.hide(this.addFragment);
             }
         } else if (page == 2) {
+            this.toolbar.setTitle("Add");
             if (this.addFragment.isAdded()) {
                 ft.show(this.addFragment);
             } else {
@@ -102,5 +104,10 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
     public void showResults() {
         double result = this.presenter.getResult();
         this.homeFragment.previewResult(result);
+    }
+
+    @Override
+    public void addOperand(String operator, int number){
+        this.presenter.addOperand(operator,number);
     }
 }

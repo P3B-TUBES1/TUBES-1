@@ -35,6 +35,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         this.btnClear = view.findViewById(R.id.btn_clear);
         this.btnSave = view.findViewById(R.id.btn_save);
         this.tvResult = view.findViewById(R.id.tv_result);
+       
+        this.btnAdd.setOnClickListener(this);
+        this.btnRes.setOnClickListener(this);
+        this.btnClear.setOnClickListener(this);
+        this.btnSave.setOnClickListener(this);
         if(lstNumber == null){
             this.lstNumber = view.findViewById(R.id.lst_number);
             ui.fetchLstNumber(lstNumber);
