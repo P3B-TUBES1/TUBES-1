@@ -28,22 +28,21 @@ public class MainPresenter {
     public void deleteList(int i){
         this.numbers.remove(i);
         this.mView.updateList(numbers);
-        this.getResult();
         mView.showResults();
     }
     public double getResult(){
         double result = 0;
         for(int i=0;i<numbers.size();i++){
-            if(numbers.get(i).getOperator()=="+"){
+            if(numbers.get(i).getOperator().equals("+")){
                 result += numbers.get(i).getOperand();
             }
-            else if(numbers.get(i).getOperator()=="-"){
+            else if(numbers.get(i).getOperator().equals("-")){
                 result -= numbers.get(i).getOperand();
             }
-            else if(numbers.get(i).getOperator()=="*"){
+            else if(numbers.get(i).getOperator().equals("*")){
                 result *= numbers.get(i).getOperand();
             }
-            else if(numbers.get(i).getOperator()=="/"){
+            else if(numbers.get(i).getOperator().equals("/")){
                 result /= numbers.get(i).getOperand();
             }
         }

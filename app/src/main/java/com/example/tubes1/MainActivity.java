@@ -110,9 +110,10 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
             if (this.addFragment.isAdded()) {
                 ft.hide(this.addFragment);
             }
-            ft.commit();
 
         }
+
+        ft.commit();
     }
 
     @Override

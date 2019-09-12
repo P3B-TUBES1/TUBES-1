@@ -36,6 +36,7 @@ public class AddFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 ui.addOperand(spinner.getSelectedItem().toString(),Integer.parseInt(et_number.getText().toString()));
+                ui.showResults();
                 ui.changePage(1);
             }
         });
