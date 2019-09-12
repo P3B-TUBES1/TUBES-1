@@ -2,17 +2,18 @@ package com.example.tubes1;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
 import com.example.tubes1.Adapter.NumberListAdapter;
+import com.example.tubes1.Library.SwipeDismissListViewTouchListener;
 
 public class HomeFragment extends Fragment implements View.OnClickListener{
     private Button btnAdd;
@@ -22,7 +23,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     private IMainActivity ui;
     private ListView lstNumber;
     private TextView tvResult;
-
+    private LinearLayout linear;
+    protected NumberListAdapter numberListAdapter;
     public static HomeFragment newInstance(){
 
         return new HomeFragment();
@@ -35,15 +37,16 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         this.btnClear = view.findViewById(R.id.btn_clear);
         this.btnSave = view.findViewById(R.id.btn_save);
         this.tvResult = view.findViewById(R.id.tv_result);
-
         this.btnAdd.setOnClickListener(this);
         this.btnRes.setOnClickListener(this);
         this.btnClear.setOnClickListener(this);
         this.btnSave.setOnClickListener(this);
-        if(lstNumber == null){
-            this.lstNumber = view.findViewById(R.id.lst_number);
-            ui.fetchLstNumber(lstNumber);
-        }
+        this.lstNumber = view.findViewById(R.id.lst_number);
+        this.numberListAdapter = ui.fetchAdapter();
+        this.lstNumber.setAdapter(numberListAdapter);
+        this.linear = view.findViewById(R.id.list_view_container);
+        this.onSwipeRemove();
+
         return view;
     }
 
@@ -71,6 +74,26 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     }
 
     public void previewResult(double result) {
-       this.tvResult.setText(result+"");
+        this.tvResult.setText(result + "");
+    }
+    public void onSwipeRemove(){
+        SwipeDismissListViewTouchListener touchListener = new SwipeDismissListViewTouchListener(
+                lstNumber,
+                new SwipeDismissListViewTouchListener.DismissCallbacks() {
+                    @Override
+                    public boolean canDismiss(int position) {
+                        return true;
+                    }
+
+                    @Override
+                    public void onDismiss(ListView listView, int[] reverseSortedPositions) {
+                        for(int position:reverseSortedPositions){
+                            numberListAdapter.remove(position);
+
+                        }
+                    }
+                }
+        );
+        lstNumber.setOnTouchListener(touchListener);
     }
 }

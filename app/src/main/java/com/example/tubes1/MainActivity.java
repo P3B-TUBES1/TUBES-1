@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Adapter;
 import android.widget.ListView;
 
 import com.example.tubes1.Adapter.NavListViewAdapter;
@@ -26,12 +27,12 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
     private HistoryFragment historyFragment;
     private ListView lstNumber;
     private NumberListAdapter numberListAdapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.presenter = new MainPresenter(this);
+        this.numberListAdapter = new NumberListAdapter(this, this.presenter);
         // navigation list
         this.navList = this.findViewById(R.id.nav_list_view);
         this.navListViewAdapter = new NavListViewAdapter(this);
@@ -48,7 +49,6 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
         this.toolbar.setTitle("Calculator");
         this.setSupportActionBar(toolbar);
         //number adapter
-        this.numberListAdapter = new NumberListAdapter(this, this.presenter);
         this.presenter.load();
 
 
@@ -116,11 +116,6 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
         ft.commit();
     }
 
-    @Override
-    public void fetchLstNumber(ListView lstNumber) {
-        this.lstNumber = lstNumber;
-        this.lstNumber.setAdapter(this.numberListAdapter);
-    }
 
     @Override
     public void showResults() {
@@ -132,6 +127,8 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
     public void addOperand(String operator, int number){
         this.presenter.addOperand(operator,number);
     }
-
-
+    @Override
+    public NumberListAdapter fetchAdapter(){
+        return this.numberListAdapter;
+    }
 }

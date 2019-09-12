@@ -1,6 +1,7 @@
 package com.example.tubes1.Adapter;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +40,11 @@ public class NumberListAdapter extends BaseAdapter {
     public void updateList(List<NumberModel> list){
         this.lst_number.clear();
         this.lst_number.addAll(list);
+        this.notifyDataSetChanged();
+    }
+    public void remove(int i){
+        Log.d("testtt","its called");
+        this.presenter.deleteList(i);
         this.notifyDataSetChanged();
     }
     @Override
