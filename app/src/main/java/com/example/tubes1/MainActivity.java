@@ -12,9 +12,10 @@ import android.widget.ListView;
 
 import com.example.tubes1.Adapter.NavListViewAdapter;
 import com.example.tubes1.Adapter.NumberListAdapter;
+
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements IMainActivity{
+public class MainActivity extends AppCompatActivity implements IMainActivity {
     private Toolbar toolbar;
     private MainPresenter presenter;
     private ListView navList;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
     private AddFragment addFragment;
     private ListView lstNumber;
     private NumberListAdapter numberListAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
         this.addFragment = AddFragment.newInstance();
         this.fragmentManager = getSupportFragmentManager();
         FragmentTransaction ft = this.fragmentManager.beginTransaction();
-        ft.add(R.id.fragment_container,this.homeFragment).commit();
+        ft.add(R.id.fragment_container, this.homeFragment).commit();
         //toolbar
         this.toolbar = this.findViewById(R.id.action_bar);
         this.toolbar.setTitle("Calculator");
@@ -46,7 +48,16 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
         //number adapter
         this.numberListAdapter = new NumberListAdapter(this, this.presenter);
         this.presenter.load();
+
+
     }
+    @Override
+    protected void onStart(){
+        super.onStart();
+        this.showResults();
+
+    }
+
     @Override
     public void updateList(List<NumberModel> list) {
         this.numberListAdapter.updateList(list);
@@ -82,14 +93,17 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
         ft.commit();
 
     }
+
     @Override
-    public void fetchLstNumber(ListView lstNumber){
+    public void fetchLstNumber(ListView lstNumber) {
         this.lstNumber = lstNumber;
         this.lstNumber.setAdapter(this.numberListAdapter);
     }
-    @Override
-    public void showResults(){
 
+    @Override
+    public void showResults() {
+        double result = this.presenter.getResult();
+        this.homeFragment.previewResult(result);
     }
 
     @Override
