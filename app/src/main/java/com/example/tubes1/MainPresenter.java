@@ -10,9 +10,12 @@ public class MainPresenter {
         this.mView = activity;
         this.numbers = new LinkedList<NumberModel>();
     }
-    public void addOperand(){
 
+    public void addOperand(String operator, int number){
+        this.numbers.add(new NumberModel(number,operator));
+        this.mView.updateList(this.numbers);
     }
+
     public void load(){
 
         this.numbers.add(new NumberModel(5,"+"));
