@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -20,6 +21,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     private Button btnSave;
     private IMainActivity ui;
     private ListView lstNumber;
+    private TextView tvResult;
+
     public static HomeFragment newInstance(){
 
         return new HomeFragment();
@@ -31,6 +34,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         this.btnRes = view.findViewById(R.id.btn_result);
         this.btnClear = view.findViewById(R.id.btn_clear);
         this.btnSave = view.findViewById(R.id.btn_save);
+        this.tvResult = view.findViewById(R.id.tv_result);
         if(lstNumber == null){
             this.lstNumber = view.findViewById(R.id.lst_number);
             ui.fetchLstNumber(lstNumber);
@@ -59,5 +63,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
         }
 
+    }
+
+    public void previewResult(double result) {
+       this.tvResult.setText(result+"");
     }
 }
