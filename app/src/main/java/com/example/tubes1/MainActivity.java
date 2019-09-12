@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
     private FragmentManager fragmentManager;
     private HomeFragment homeFragment;
     private AddFragment addFragment;
+    private HistoryFragment historyFragment;
     private ListView lstNumber;
     private NumberListAdapter numberListAdapter;
     @Override
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
         this.navList.setAdapter(this.navListViewAdapter);
         this.homeFragment = HomeFragment.newInstance();
         this.addFragment = AddFragment.newInstance();
+        this.historyFragment = historyFragment.newInstance();
         this.fragmentManager = getSupportFragmentManager();
         this.toolbar = this.findViewById(R.id.action_bar);
         FragmentTransaction ft = this.fragmentManager.beginTransaction();
@@ -63,6 +65,10 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
             if (this.addFragment.isAdded()) {
                 ft.hide(this.addFragment);
             }
+            if (this.historyFragment.isAdded()) {
+                ft.hide(this.historyFragment);
+            }
+
         } else if (page == 2) {
             if (this.addFragment.isAdded()) {
                 ft.show(this.addFragment);
@@ -72,17 +78,35 @@ public class MainActivity extends AppCompatActivity implements IMainActivity{
             if (this.homeFragment.isAdded()) {
                 ft.hide(this.homeFragment);
             }
-        }
-        ft.commit();
+            if (this.historyFragment.isAdded()) {
+                ft.hide(this.historyFragment);
+            }
+        } else if (page == 3) {
+            if (this.historyFragment.isAdded()) {
+                ft.show(this.historyFragment);
+            } else {
+                ft.add(R.id.fragment_container, this.historyFragment).addToBackStack(null);
+            }
+            if (this.homeFragment.isAdded()) {
+                ft.hide(this.homeFragment);
+            }
+            if (this.addFragment.isAdded()) {
+                ft.hide(this.addFragment);
+            }
+            ft.commit();
 
+        }
     }
     @Override
     public void fetchLstNumber(ListView lstNumber){
         this.lstNumber = lstNumber;
         this.lstNumber.setAdapter(this.numberListAdapter);
     }
+
     @Override
     public void showResults(){
 
     }
+
+
 }
