@@ -2,6 +2,7 @@ package com.example.tubes1;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
     private HistoryFragment historyFragment;
     private ListView lstNumber;
     private NumberListAdapter numberListAdapter;
+    private DrawerLayout drawerLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
         this.toolbar = this.findViewById(R.id.action_bar);
         this.toolbar.setTitle("Calculator");
         this.setSupportActionBar(toolbar);
+        this.drawerLayout = this.findViewById(R.id.drawer_layout);
         //number adapter
         this.presenter.load();
 
@@ -68,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
     @Override
     public void changePage(int page) {
         //Log.d("test", "test");
-
+        this.drawerLayout.closeDrawers();
         FragmentTransaction ft = this.fragmentManager.beginTransaction();
         if (page == 1) {
             this.toolbar.setTitle("Calculator");
@@ -99,8 +102,10 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
                 ft.hide(this.historyFragment);
             }
         } else if (page == 3) {
+            this.toolbar.setTitle("History");
             if (this.historyFragment.isAdded()) {
                 ft.show(this.historyFragment);
+                this.historyFragment.fetchData();
             } else {
                 ft.add(R.id.fragment_container, this.historyFragment).addToBackStack(null);
             }
@@ -110,7 +115,6 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
             if (this.addFragment.isAdded()) {
                 ft.hide(this.addFragment);
             }
-
         }
 
         ft.commit();
@@ -133,6 +137,9 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
     }
     @Override
     public void clearAll(){
+        double n = this.presenter.getResult();
+        Storage storage = new Storage();
+        storage.writeFile(n,this,"historyList");
         this.presenter.clear();
     }
 }

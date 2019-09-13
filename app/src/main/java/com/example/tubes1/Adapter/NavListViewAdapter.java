@@ -20,7 +20,6 @@ import java.util.List;
 public class NavListViewAdapter extends BaseAdapter {
     private Activity activity;
     private List<String> menu;
-
     public NavListViewAdapter(Activity activity){
         this.activity= activity;
         this.menu= new LinkedList<String>();
