@@ -23,7 +23,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     private IMainActivity ui;
     private ListView lstNumber;
     private TextView tvResult;
-    private LinearLayout linear;
     protected NumberListAdapter numberListAdapter;
     public static HomeFragment newInstance(){
 
@@ -44,7 +43,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         this.lstNumber = view.findViewById(R.id.lst_number);
         this.numberListAdapter = ui.fetchAdapter();
         this.lstNumber.setAdapter(numberListAdapter);
-        this.linear = view.findViewById(R.id.list_view_container);
         this.onSwipeRemove();
 
         return view;
