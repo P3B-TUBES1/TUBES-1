@@ -7,6 +7,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.app.Activity;
+import android.app.DialogFragment;
+import android.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Adapter;
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
     private ListView lstNumber;
     private NumberListAdapter numberListAdapter;
     private DrawerLayout drawerLayout;
+    private ResultDialogFragment res;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -141,5 +144,17 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
         Storage storage = new Storage();
         storage.writeFile(n,this,"historyList");
         this.presenter.clear();
+    }
+
+    @Override
+    public void showDialog() {
+        FragmentManager fm = getSupportFragmentManager();
+        this.res = ResultDialogFragment.newInstance(( this.presenter.getResult()));
+        res.show(fm,"dialog");
+    }
+
+    @Override
+    public void hideDialog() {
+        this.res.dismiss();
     }
 }

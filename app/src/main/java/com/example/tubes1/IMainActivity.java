@@ -12,5 +12,7 @@ public interface IMainActivity {
     void showResults(); // dari presenter -> dialogFragment
     void addOperand(String operator, int number);
     void clearAll();
+    void showDialog();
+    void hideDialog();
     NumberListAdapter fetchAdapter();
 }
