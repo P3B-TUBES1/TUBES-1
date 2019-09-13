@@ -29,7 +29,6 @@ public class Storage {
             fop.write(contentInBytes);
             fop.flush();
             fop.close();
-            Log.d("TESTT",n+"");
         }catch(IOException e){
             e.printStackTrace();
         }
