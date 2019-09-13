@@ -64,7 +64,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         if(view.getId()==btnAdd.getId()){
             this.ui.changePage(2);
         }else if(view.getId()==btnRes.getId()){
-
+            this.ui.showDialog();
         }else if(view.getId()==btnClear.getId()){
             this.tvResult.setText("0");
             this.ui.clearAll();
