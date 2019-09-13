@@ -49,7 +49,9 @@ public class MainPresenter {
         return result;
     }
     public void clear(){
-
+        this.numbers.clear();
+        this.mView.updateList(numbers);
+        this.mView.showResults();
     }
     public void save(){
 

@@ -66,7 +66,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         }else if(view.getId()==btnRes.getId()){
 
         }else if(view.getId()==btnClear.getId()){
-
+            this.tvResult.setText("0");
+            this.ui.clearAll();
         }else if(view.getId()==btnSave.getId()){
 
         }

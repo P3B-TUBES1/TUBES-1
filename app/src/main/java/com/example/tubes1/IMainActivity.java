@@ -11,5 +11,6 @@ public interface IMainActivity {
     void changePage(int page); // fragment ke MainActivity
     void showResults(); // dari presenter -> dialogFragment
     void addOperand(String operator, int number);
+    void clearAll();
     NumberListAdapter fetchAdapter();
 }

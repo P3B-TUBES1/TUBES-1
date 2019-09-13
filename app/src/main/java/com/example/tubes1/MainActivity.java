@@ -131,4 +131,8 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
     public NumberListAdapter fetchAdapter(){
         return this.numberListAdapter;
     }
+    @Override
+    public void clearAll(){
+        this.presenter.clear();
+    }
 }

@@ -2,7 +2,6 @@ package com.example.tubes1;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,7 @@ import android.widget.Spinner;
 
 import androidx.fragment.app.Fragment;
 
-public class AddFragment extends Fragment {
+public class AddFragment extends Fragment implements View.OnClickListener {
     private IMainActivity ui;
     private Spinner spinner;
     private Button btn_submit;
@@ -32,14 +31,7 @@ public class AddFragment extends Fragment {
         spinner.setAdapter(adapter);
         this.et_number = view.findViewById(R.id.et_operand);
         this.btn_submit = view.findViewById(R.id.btn_submit);
-        this.btn_submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ui.addOperand(spinner.getSelectedItem().toString(),Integer.parseInt(et_number.getText().toString()));
-                ui.showResults();
-                ui.changePage(1);
-            }
-        });
+        this.btn_submit.setOnClickListener(this);
         return view;
     }
 
@@ -50,5 +42,12 @@ public class AddFragment extends Fragment {
         }else{
             throw new ClassCastException(context.toString()+"must implement FragmentListener");
         }
+    }
+
+    @Override
+    public void onClick(View view) {
+        ui.addOperand(spinner.getSelectedItem().toString(),Integer.parseInt(et_number.getText().toString()));
+        ui.showResults();
+        ui.changePage(1);
     }
 }
