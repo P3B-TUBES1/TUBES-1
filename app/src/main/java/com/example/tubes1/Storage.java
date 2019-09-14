@@ -45,6 +45,7 @@ public class Storage {
                 read+=(char)content+"";
 
             }
+            fis.close();
         }catch(IOException e){
             e.printStackTrace();
         }

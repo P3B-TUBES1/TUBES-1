@@ -25,6 +25,10 @@ public class NumberListAdapter extends BaseAdapter {
         this.lst_number = new LinkedList<NumberModel>();
         this.presenter = presenter;
     }
+
+    public List<NumberModel> getLst_number(){
+        return lst_number;
+    }
     @Override
     public int getCount(){
         return lst_number.size();

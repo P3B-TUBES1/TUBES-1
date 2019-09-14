@@ -2,6 +2,8 @@ package com.example.tubes1;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,10 +12,15 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.tubes1.Adapter.NumberListAdapter;
+import com.example.tubes1.Library.SaveStorage;
 import com.example.tubes1.Library.SwipeDismissListViewTouchListener;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class HomeFragment extends Fragment implements View.OnClickListener{
     private Button btnAdd;
@@ -24,10 +31,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     private ListView lstNumber;
     private TextView tvResult;
     protected NumberListAdapter numberListAdapter;
-    public static HomeFragment newInstance(){
 
+    public static HomeFragment newInstance(){
         return new HomeFragment();
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance){
         View view = inflater.inflate(R.layout.fragment_home,container,false);
@@ -44,9 +52,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         this.numberListAdapter = ui.fetchAdapter();
         this.lstNumber.setAdapter(numberListAdapter);
         this.onSwipeRemove();
-
         return view;
     }
+
 
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -67,7 +75,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
             this.tvResult.setText("0");
             this.ui.clearAll();
         }else if(view.getId()==btnSave.getId()){
-
+            this.ui.saveState(numberListAdapter.getLst_number());
         }
 
     }
@@ -94,5 +102,21 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                 }
         );
         lstNumber.setOnTouchListener(touchListener);
+    }
+
+    public void fetchData(){
+        SaveStorage storage = new SaveStorage();
+        if(storage.checkFile(getContext())) {
+            String n = storage.readFile(getContext());
+            String[] arr = n.split("/n");
+            Log.d("Title", n);
+            for (int i = 0; i < arr.length; i++) {
+                String temp = arr[i];
+                String operator = temp.substring(0, 1);
+                double operand = Double.parseDouble(temp.substring(1));
+                ui.addOperand(operator, (int) operand);
+                Log.d("Title", operand + operator);
+            }
+        }
     }
 }
