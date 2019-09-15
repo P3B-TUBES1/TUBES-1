@@ -21,12 +21,10 @@ public class MainPresenter {
     }
 
     public void load(){
-        /*
-        this.numbers.add(new NumberModel(5,"+"));
-        this.numbers.add(new NumberModel(3,"-"));
-        this.numbers.add(new NumberModel(4,"*"));
-        this.numbers.add(new NumberModel(2,"/"));
-        */
+//        this.numbers.add(new NumberModel(5,"+"));
+//        this.numbers.add(new NumberModel(3,"-"));
+//        this.numbers.add(new NumberModel(4,"*"));
+//        this.numbers.add(new NumberModel(2,"/"));
         this.mView.updateList(this.numbers);
     }
     public void deleteList(int i){

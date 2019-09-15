@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
     @Override
     protected void onStart(){
         super.onStart();
+        this.presenter.clear();
         this.showResults();
         this.homeFragment.fetchData();
         showResults();
