@@ -1,5 +1,8 @@
 package com.example.tubes1;
 
+import android.content.Context;
+
+import java.io.FileOutputStream;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -18,11 +21,12 @@ public class MainPresenter {
     }
 
     public void load(){
-
+        /*
         this.numbers.add(new NumberModel(5,"+"));
         this.numbers.add(new NumberModel(3,"-"));
         this.numbers.add(new NumberModel(4,"*"));
         this.numbers.add(new NumberModel(2,"/"));
+        */
         this.mView.updateList(this.numbers);
     }
     public void deleteList(int i){
@@ -54,6 +58,6 @@ public class MainPresenter {
         this.mView.showResults();
     }
     public void save(){
-
+        this.mView.saveState(numbers);
     }
 }

@@ -9,14 +9,21 @@ import androidx.fragment.app.FragmentTransaction;
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.widget.Adapter;
 import android.widget.ListView;
 
 import com.example.tubes1.Adapter.NavListViewAdapter;
 import com.example.tubes1.Adapter.NumberListAdapter;
+import com.example.tubes1.Library.SaveStorage;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements IMainActivity {
@@ -32,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
     private NumberListAdapter numberListAdapter;
     private DrawerLayout drawerLayout;
     private ResultDialogFragment res;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,15 +63,16 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
         this.setSupportActionBar(toolbar);
         this.drawerLayout = this.findViewById(R.id.drawer_layout);
         //number adapter
+        this.lstNumber = this.findViewById(R.id.lst_number);
         this.presenter.load();
-
-
     }
+
     @Override
     protected void onStart(){
         super.onStart();
         this.showResults();
-
+        this.homeFragment.fetchData();
+        showResults();
     }
 
     @Override
@@ -156,5 +165,11 @@ public class MainActivity extends AppCompatActivity implements IMainActivity {
     @Override
     public void hideDialog() {
         this.res.dismiss();
+    }
+
+    @Override
+    public void saveState(List<NumberModel> list){
+        SaveStorage storage = new SaveStorage();
+        storage.writeFile(list,this);
     }
 }

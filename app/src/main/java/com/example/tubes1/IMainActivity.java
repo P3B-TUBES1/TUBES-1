@@ -14,5 +14,6 @@ public interface IMainActivity {
     void clearAll();
     void showDialog();
     void hideDialog();
+    void saveState(List<NumberModel> list);
     NumberListAdapter fetchAdapter();
 }
